@@ -1,7 +1,8 @@
 function love.load()
   core = require"core"
+  dofile(love.filesystem.getSource().."/executor.lua")
+  --print(dofile(love.filesystem.getSource().."/fisica.lua"))
 end
-function love.update(dt)dt = dt end
 function love.draw()
-  core:run()
+  core.run()
 end

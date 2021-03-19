@@ -6,18 +6,20 @@ de asignarle su propia metatable que tambien estara en el mismo vector2.
 local vector2 = {
   class = "vector2",
   x = 0,
-  y = 0,
-  new = function(self,x,y)
-    local vec = {}
-    for i,v in pairs(self) do
-      vec[i] = v
-    end
-    if x ~= nil then vec.x = x end
-    if y ~= nil then vec.y = y end
-    setmetatable(vec,vec.mt)
-    return vec
-  end
+  y = 0
 }
+
+--La funcion new tendra que ir separada para evitar confusiones de generaciones.
+function vector2.new(x,y)
+  local vec = {}
+  for i,v in pairs(vector2) do
+    vec[i] = v
+  end
+  if x ~= nil then vec.x = x end
+  if y ~= nil then vec.y = y end
+  setmetatable(vec,vec.mt)
+  return vec
+end
 
 --su correspondiente metatable
 vector2.mt = {
